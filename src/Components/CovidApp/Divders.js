@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import GlobalState from '../CovidApp/Components/GlobalState'
 import {CountryStates} from './Components/CountryStates'
 import { GraphView } from "./Components/GraphView";

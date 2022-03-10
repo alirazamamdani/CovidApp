@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
+import CountryRecords from './CountryData'
 import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles((theme) => ({
@@ -13,6 +14,13 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     color: theme.palette.text.secondary,
     margin: "20px 10px",
+    height: 200,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    fontSize: "24px",
+    fontWeight: 600,
+    fontFamily: "Poppins",
   },
   title: {
     Color: "#ccc",
@@ -23,28 +31,23 @@ export const CountryStates = () => {
 
   useEffect(() => {
     async function getData() {
-      const response = await fetch(
-        "https://api.covid19api.com/countries"
-      );
+      const response = await fetch("https://api.covid19api.com/summary");
       let data = await response.json();
-      console.log(data)
-      setData(data)
+      console.log(data.Countries);
+      setData(data.Countries)
+      
     }
     getData();
   }, []);
   const classes = useStyles();
 
-  return <div className={classes.root}>
-     <Grid container>
-        {data.map((countries, index) => (
-          <Grid item xs={12} sm={12} md={4} key={index}>
-            <Paper className={classes.paper} elevation={5}>
-              {countries.Slug}
-              <br />
-          {countries.Country}
-            </Paper>
-          </Grid>
-        ))}
+  return (
+    <div className={classes.root}>
+      <Grid container>
+        
+         <CountryRecords countrydata={data}/>
+ 
       </Grid>
-    </div>;
+    </div>
+  );
 };

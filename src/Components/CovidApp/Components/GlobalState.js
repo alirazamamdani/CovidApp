@@ -26,14 +26,13 @@ export default function GlobalState() {
   useEffect(() => {
     async function getData() {
       const response = await fetch(
-        "https://api.coronatracker.com/v3/stats/worldometer/global"
+        "https://api.covid19api.com/summary"
       );
       let data = await response.json();
-      console.log(data.totalDeaths);
-      delete data.created;
-      delete data.totalCasesPerMillionPop;
-      setData(data);
       console.log(data);
+      delete data.Global.Date  
+      setData(data.Global);
+      console.log(data.Global);
     }
     getData();
   }, []);
