@@ -14,23 +14,20 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
     margin: "20px 10px",
   },
-  title : {
-    Color: "#ccc"
-  }
+  title: {
+    Color: "#ccc",
+  },
 }));
 
 export default function GlobalState() {
   const [data, setData] = useState([]);
 
-
   useEffect(() => {
     async function getData() {
-      const response = await fetch(
-        "https://api.covid19api.com/summary"
-      );
+      const response = await fetch("https://api.covid19api.com/summary");
       let data = await response.json();
       console.log(data);
-      delete data.Global.Date  
+      delete data.Global.Date;
       setData(data.Global);
       console.log(data.Global);
     }
